@@ -1,0 +1,87 @@
+/* Estas tres líneas son obligatorias para que Tailwind funcione */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ahora sí puedes usar @layer components */
+@layer components {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .animate-scale-in {
+    animation: scaleIn 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+  /* Importante para que el mapa se vea */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Para que no tape al Navbar */
+  border-radius: 1.5rem; /* Para que coincida con el diseño */
+}
+
+/* Fix para que los iconos no se vean cortados */
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  display: block !important;
+}
+}
+
+/* El resto de tu CSS si tenías algo más... */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+/* Personalización de React Calendar para Liquid Glass */
+.react-calendar {
+  background: rgba(255, 255, 255, 0.3) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 20px;
+  font-family: inherit;
+  width: 100% !important;
+}
+
+.react-calendar__tile--now {
+  background: rgba(197, 160, 89, 0.2) !important;
+  color: #C5A059 !important;
+  font-weight: bold;
+}
+
+.react-calendar__tile--active {
+  background: #1A1A1A !important;
+  border-radius: 12px;
+  color: #C5A059 !important;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
