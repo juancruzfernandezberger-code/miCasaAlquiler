@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 
-// Importar directamente - Vite procesará estas rutas correctamente
+// Imports simples - funcionan en Vite
 import heroDesktopImg from '../assets/images/hero.jpeg';
 import heroMobileImg from '../assets/images/hero1.jpeg';
 
@@ -41,7 +41,6 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60 z-10" />
       
       <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-20">
-        {/* ALERTA DINÁMICA */}
         {isAvailable && (
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4 sm:mb-6 animate-bounce">
             <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
