@@ -4,7 +4,6 @@ import { doc, onSnapshot } from 'firebase/firestore';
 import heroDesktop from '../assets/images/hero.jpeg';
 import heroMobile from '../assets/images/hero1.jpeg';
 
-
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
 
