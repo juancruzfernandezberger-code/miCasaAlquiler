@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
+import heroDesktop from '../assets/images/hero.jpg';
+import heroMobile from '../assets/images/hero1.jpg';
 
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
@@ -19,7 +21,7 @@ const Hero = () => {
       {/* Imagen de fondo responsiva - Desktop */}
       <div className="absolute inset-0 hidden md:block">
         <img 
-          src="/hero.JPG" 
+          src={heroDesktop}
           className="w-full h-full object-cover object-center"
           alt="Fachada de la casa"
         />
@@ -28,7 +30,7 @@ const Hero = () => {
       {/* Imagen de fondo responsiva - Móvil */}
       <div className="absolute inset-0 block md:hidden">
         <img 
-          src="public/Hero1.JPG" 
+          src={heroMobile}
           className="w-full h-full object-cover object-center"
           alt="Fachada de la casa"
         />
