@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 
-// Importar las imágenes correctamente desde src/assets/images
-import heroDesktop from '../assets/images/hero.jpeg';
-import heroMobile from '../assets/images/hero1.jpeg';
+// Importar directamente - Vite procesará estas rutas correctamente
+import heroDesktopImg from '../assets/images/hero.jpeg?url';
+import heroMobileImg from '../assets/images/hero1.jpeg?url';
 
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
@@ -23,7 +23,7 @@ const Hero = () => {
       {/* Imagen de fondo responsiva - Desktop */}
       <div className="absolute inset-0 hidden md:block">
         <img 
-          src={heroDesktop}
+          src={heroDesktopImg}
           className="w-full h-full object-cover object-center"
           alt="Fachada de la casa"
         />
@@ -32,7 +32,7 @@ const Hero = () => {
       {/* Imagen de fondo responsiva - Móvil */}
       <div className="absolute inset-0 block md:hidden">
         <img 
-          src={heroMobile}
+          src={heroMobileImg}
           className="w-full h-full object-cover object-center"
           alt="Fachada de la casa"
         />
