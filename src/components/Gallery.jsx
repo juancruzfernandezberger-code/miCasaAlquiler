@@ -2,15 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const images = [
-  "public/0.1.JPG",
-  "public/1.JPG",
-  "public/2.1.JPG",
-  "public/3.1.JPG",
-  "public/4.JPG",
-  "public/5.JPG",
-  "public/6.JPG",
-  "public/7.JPG",
-  "public/8.JPG"
+  "/0.1.JPG",
+  "/1.JPG",
+  "/2.1.JPG",
+  "/3.1.JPG",
+  "/4.JPG",
+  "/5.JPG",
+  "/6.JPG",
+  "/7.JPG",
+  "/8.JPG"
 ];
 
 const Gallery = () => {

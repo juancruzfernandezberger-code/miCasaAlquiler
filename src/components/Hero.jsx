@@ -19,7 +19,7 @@ const Hero = () => {
       {/* Imagen de fondo responsiva - Desktop */}
       <div className="absolute inset-0 hidden md:block">
         <img 
-          src="public/hero.JPG" 
+          src="/hero.JPG" 
           className="w-full h-full object-cover object-center"
           alt="Fachada de la casa"
         />
