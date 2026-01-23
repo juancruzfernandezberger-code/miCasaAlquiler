@@ -3,8 +3,8 @@ import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 
 // Importar directamente - Vite procesará estas rutas correctamente
-import heroDesktopImg from '../assets/images/hero.jpeg?url';
-import heroMobileImg from '../assets/images/hero1.jpeg?url';
+import heroDesktopImg from '../assets/images/hero.jpeg';
+import heroMobileImg from '../assets/images/hero1.jpeg';
 
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
