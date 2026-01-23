@@ -2,17 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
 
-// Intentar importar las imágenes
-let heroDesktop, heroMobile;
-try {
-  heroDesktop = require('../assets/images/hero.jpeg');
-  heroMobile = require('../assets/images/hero1.jpeg');
-} catch (error) {
-  console.error('Error loading hero images:', error);
-  // Fallback a una imagen por defecto o color
-  heroDesktop = '';
-  heroMobile = '';
-}
+// Importar las imágenes correctamente desde src/assets/images
+import heroDesktop from '../assets/images/hero.jpeg';
+import heroMobile from '../assets/images/hero1.jpeg';
 
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
@@ -29,33 +21,21 @@ const Hero = () => {
   return (
     <section id="inicio" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Imagen de fondo responsiva - Desktop */}
-      <div className="absolute inset-0 hidden md:block bg-gray-800">
-        {heroDesktop && (
-          <img 
-            src={heroDesktop}
-            className="w-full h-full object-cover object-center"
-            alt="Fachada de la casa"
-            onError={(e) => {
-              console.error('Error loading desktop hero image');
-              e.target.style.display = 'none';
-            }}
-          />
-        )}
+      <div className="absolute inset-0 hidden md:block">
+        <img 
+          src={heroDesktop}
+          className="w-full h-full object-cover object-center"
+          alt="Fachada de la casa"
+        />
       </div>
       
       {/* Imagen de fondo responsiva - Móvil */}
-      <div className="absolute inset-0 block md:hidden bg-gray-800">
-        {heroMobile && (
-          <img 
-            src={heroMobile}
-            className="w-full h-full object-cover object-center"
-            alt="Fachada de la casa"
-            onError={(e) => {
-              console.error('Error loading mobile hero image');
-              e.target.style.display = 'none';
-            }}
-          />
-        )}
+      <div className="absolute inset-0 block md:hidden">
+        <img 
+          src={heroMobile}
+          className="w-full h-full object-cover object-center"
+          alt="Fachada de la casa"
+        />
       </div>
       
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60 z-10" />
