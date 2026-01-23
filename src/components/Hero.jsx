@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/config';
 import { doc, onSnapshot } from 'firebase/firestore';
-import heroDesktop from '../assets/images/hero.jpg';
-import heroMobile from '../assets/images/hero1.jpg';
+import heroDesktop from '../assets/images/hero.jpeg';
+import heroMobile from '../assets/images/hero1.jpeg';
 
 const Hero = () => {
   const [isAvailable, setIsAvailable] = useState(false);
