@@ -45,7 +45,7 @@ const Login = () => {
           <h2 className="font-serif text-3xl text-gray-900 mb-2">
             Panel <span className="text-[#C5A059]">Admin</span>
           </h2>
-          <p className="text-gray-400 text-sm tracking-widest uppercase">Villa Amanecer</p>
+          <p className="text-gray-400 text-sm tracking-widest uppercase">AlquilerYocsina</p>
         </div>
 
         {error && (

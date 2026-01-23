@@ -83,7 +83,7 @@ const AdminDashboard = () => {
   };
 
   const confirmarVisita = async (app) => {
-    const mensaje = `Hola ${app.cliente}, confirmo tu visita a Villa Amanecer el ${app.fecha} a las ${app.hora} hs.`;
+    const mensaje = `Hola ${app.cliente}, confirmo tu visita a AlquilerYocsina el ${app.fecha} a las ${app.hora} hs.`;
     window.open(`https://wa.me/${app.contacto.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`, '_blank');
     await updateDoc(doc(db, "reservas_visitas", app.id), { estado: 'confirmado' });
   };

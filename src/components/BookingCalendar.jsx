@@ -91,7 +91,7 @@ const BookingCalendar = () => {
       <div className="max-w-5xl mx-auto px-4 md:px-6">
         
         <div className="text-center mb-10 md:mb-16">
-          <span className="text-[#C5A059] font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]">Experiencia Villa Amanecer</span>
+          <span className="text-[#C5A059] font-bold text-[10px] md:text-xs uppercase tracking-[0.3em]"></span>
           <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mt-2">Agendá tu Visita</h2>
           <div className="w-12 h-[2px] bg-[#C5A059] mx-auto mt-4"></div>
         </div>

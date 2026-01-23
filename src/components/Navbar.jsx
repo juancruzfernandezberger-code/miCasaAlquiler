@@ -21,7 +21,7 @@ const Navbar = () => {
         
         {/* LOGO */}
         <h1 className="font-serif text-xl md:text-2xl tracking-tighter text-gray-900">
-          VILLA<span className="text-[#C5A059]">AMANECER</span>
+          Alquiler<span className="text-[#C5A059]">Yocsina</span>
         </h1>
 
         {/* MENU DESKTOP */}

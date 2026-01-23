@@ -33,7 +33,7 @@ const Footer = () => {
               {/* BRANDING */}
               <div className="lg:col-span-1">
                 <h2 className="text-3xl font-serif text-gray-900 tracking-tighter mb-4 italic">
-                  Villa<span className="text-[#C5A059] not-italic"> Amanecer</span>
+                  Alquiler<span className="text-[#C5A059] not-italic">Yocsina</span>
                 </h2>
                 <p className="text-gray-500 text-xs font-medium leading-relaxed max-w-[200px] uppercase tracking-wider">
                   Experiencia residencial exclusiva en el corazón de Córdoba.
@@ -94,7 +94,7 @@ const Footer = () => {
             {/* CRÉDITOS PERSONALIZADOS */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest">
-                © 2026 Villa Amanecer — Exclusividad & Privacidad.
+                © 2026 AlquilerYocsina — Exclusividad & Privacidad.
               </p>
               
               <div className="group/dev flex items-center gap-3 bg-white/60 backdrop-blur-md px-6 py-3 rounded-2xl border border-white shadow-sm hover:shadow-md transition-all duration-500">

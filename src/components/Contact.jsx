@@ -25,7 +25,7 @@ const Contact = () => {
       from_name: formData.nombre,
       from_email: formData.email,
       message: formData.consulta,
-      to_name: 'Administración Villa Amanecer',
+      to_name: 'Administración del alquiler',
     };
 
     try {

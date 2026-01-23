@@ -30,8 +30,8 @@ const Location = () => {
               Eje Estratégico & Desarrollo
             </span>
             <h2 className="text-4xl md:text-7xl font-serif text-[#1A1A1A] leading-tight tracking-tighter">
-              El corazón del <br /> 
-              <span className="italic text-[#C5A059]">nuevo Malagueño</span>
+              El corazón de <br /> 
+              <span className="italic text-[#C5A059]">Nuevo Malagueño</span>
             </h2>
           </div>
           <div className="pb-2">
@@ -46,7 +46,7 @@ const Location = () => {
           {/* MAPA GOOGLE MAPS CON MARCADOR */}
           <div className="flex-1 h-[400px] md:h-[600px] rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white relative">
             <iframe 
-              title="Mapa Villa Amanecer"
+              title="Mapa Alquiler Yocsina"
               src={mapUrl}
               width="100%" 
               height="100%" 
@@ -82,7 +82,7 @@ const Location = () => {
               <div className="space-y-4">
                 <div className="flex justify-between items-center border-b border-white/5 pb-2">
                   <span className="text-xs text-gray-400 font-medium tracking-wide">Cba Capital</span>
-                  <span className="text-lg font-black text-[#C5A059]">15' Min</span>
+                  <span className="text-lg font-black text-[#C5A059]">20' Min</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-white/5 pb-2">
                   <span className="text-xs text-gray-400 font-medium tracking-wide">Villa Carlos Paz</span>

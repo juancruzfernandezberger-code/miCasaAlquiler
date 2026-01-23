@@ -53,7 +53,7 @@ const ChatBot = () => {
           messages: [
             { 
               role: "system", 
-              content: `Eres el encargado de Villa Amanecer. Es una casa amoblada en Yocsina, Malagueño.
+              content: `Eres el encargado del Alquiler en Yocsina. Es una casa amoblada en Yocsina, Malagueño.
               CONDICIONES NO NEGOCIABLES:
               1. ALQUILER: Solo mensual (no por día).
               2. MONEDA: Pesos Argentinos.
@@ -107,7 +107,7 @@ const ChatBot = () => {
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
                 <div>
-                  <h3 className="font-serif tracking-widest text-xs uppercase text-gray-900">Villa Amanecer</h3>
+                  <h3 className="font-serif tracking-widest text-xs uppercase text-gray-900">Alquiler Yocsina</h3>
                   <p className="text-[10px] text-[#C5A059] font-bold">Asistente Virtual</p>
                 </div>
               </div>
