@@ -14,7 +14,7 @@ const ChatBot = () => {
   const scrollRef = useRef(null);
 
   const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-  const WHATSAPP_NUMBER = "5493510000000"; 
+  const WHATSAPP_NUMBER = "+54 351 616 26 93"; 
 
   useEffect(() => {
     if (isOpen) {
