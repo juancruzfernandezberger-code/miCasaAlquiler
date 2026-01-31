@@ -10,12 +10,16 @@ const BookingCalendar = () => {
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [bookedTimes, setBookedTimes] = useState([]);
-  const [blockedDates, setBlockedDates] = useState([]); // Fechas de mantenimiento
+  const [blockedDates, setBlockedDates] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const hours = ['15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
 
-  // 1. Escuchar fechas bloqueadas por el Administrador
+  // ====== CONFIGURACIÓN ADMIN ======
+  // 📱 IMPORTANTE: Cambia estos datos por los tuyos
+  const ADMIN_WHATSAPP = '+5493512345678';  // ← Tu número con código de país
+  const ADMIN_NOMBRE = 'Admin';              // ← Tu nombre
+
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "configuracion", "estado_villa"), (snap) => {
       if (snap.exists()) {
@@ -38,12 +42,75 @@ const BookingCalendar = () => {
     setSelectedTime('');
   }, [date]);
 
-  // 2. Función para deshabilitar días (Domingos + Bloqueos de Admin)
   const isDateDisabled = ({ date }) => {
     const dateStr = date.toISOString().split('T')[0];
     const isSunday = date.getDay() === 0;
     const isBlockedByAdmin = blockedDates.includes(dateStr);
     return isSunday || isBlockedByAdmin;
+  };
+
+  // ====== MÉTODO 1: CallMeBot API (MÁS AUTOMÁTICO) ======
+  const enviarNotificacionCallMeBot = async (datos) => {
+    // Primero necesitas obtener tu API Key de CallMeBot:
+    // 1. Agrega el número +34 644 34 87 08 a tus contactos como "CallMeBot"
+    // 2. Envíale por WhatsApp: "I allow callmebot to send me messages"
+    // 3. Te responderá con tu API Key
+    
+    const apiKey = 'TU_API_KEY_AQUI'; // ← Pegar aquí tu API Key de CallMeBot
+    
+    const mensaje = `🏡 *NUEVA RESERVA ALQUILERYOCSINA*
+
+👤 Cliente: ${datos.cliente}
+📞 Teléfono: ${datos.contacto}
+📅 Fecha: ${formatearFecha(datos.fecha)}
+⏰ Hora: ${datos.hora}
+
+Revisa el panel de administración para confirmar.`;
+
+    try {
+      const url = `https://api.callmebot.com/whatsapp.php?phone=${ADMIN_WHATSAPP.replace(/\D/g, '')}&text=${encodeURIComponent(mensaje)}&apikey=${apiKey}`;
+      
+      const response = await fetch(url);
+      
+      if (response.ok) {
+        console.log('✅ Notificación WhatsApp enviada');
+      } else {
+        console.log('⚠️ Error al enviar WhatsApp automático');
+      }
+    } catch (error) {
+      console.error('Error CallMeBot:', error);
+    }
+  };
+
+  // ====== MÉTODO 2: WhatsApp Web Direct (MÁS SIMPLE) ======
+  const enviarNotificacionWhatsAppWeb = (datos) => {
+    const mensaje = `🏡 *NUEVA RESERVA - AlquilerYocsina*
+
+👤 Cliente: ${datos.cliente}
+📞 Teléfono: ${datos.contacto}
+📅 Fecha: ${formatearFecha(datos.fecha)}
+⏰ Hora: ${datos.hora}
+
+Ingresa al panel para confirmar la visita.`;
+
+    // Abre WhatsApp Web con el mensaje pre-escrito
+    const urlWhatsApp = `https://wa.me/${ADMIN_WHATSAPP.replace(/\D/g, '')}?text=${encodeURIComponent(mensaje)}`;
+    
+    // Abrir en nueva pestaña
+    const ventana = window.open(urlWhatsApp, '_blank');
+    
+    if (ventana) {
+      console.log('✅ WhatsApp abierto');
+    } else {
+      console.log('⚠️ Popup bloqueado - habilita popups para notificaciones');
+    }
+  };
+
+  // Función auxiliar para formatear fecha
+  const formatearFecha = (fechaStr) => {
+    const [año, mes, dia] = fechaStr.split('-');
+    const meses = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
+    return `${dia} ${meses[parseInt(mes) - 1]} ${año}`;
   };
 
   const handleBooking = async (e) => {
@@ -58,7 +125,11 @@ const BookingCalendar = () => {
 
     setLoading(true);
     try {
-      const checkQ = query(collection(db, "reservas_visitas"), where("fecha", "==", fechaStr), where("hora", "==", selectedTime));
+      const checkQ = query(
+        collection(db, "reservas_visitas"), 
+        where("fecha", "==", fechaStr), 
+        where("hora", "==", selectedTime)
+      );
       const checkSnap = await getDocs(checkQ);
 
       if (!checkSnap.empty) {
@@ -68,19 +139,36 @@ const BookingCalendar = () => {
         return;
       }
 
-      await addDoc(collection(db, "reservas_visitas"), {
+      const datosReserva = {
         cliente: nombre,
         contacto: contactoCompleto,
         fecha: fechaStr,
         hora: selectedTime,
         timestamp: serverTimestamp()
-      });
+      };
 
-      alert("¡Turno reservado con éxito!");
-      setNombre(''); setTelefono(''); setSelectedTime('');
+      // Guardar en Firebase
+      await addDoc(collection(db, "reservas_visitas"), datosReserva);
+
+      // ====== ENVIAR NOTIFICACIÓN AL ADMINISTRADOR ======
+      
+      // OPCIÓN A: CallMeBot (100% automático pero requiere setup)
+      // Descomenta esta línea después de configurar tu API Key:
+      // await enviarNotificacionCallMeBot(datosReserva);
+      
+      // OPCIÓN B: WhatsApp Web (Requiere un clic pero no necesita setup)
+      // Esta es la más simple para empezar:
+      enviarNotificacionWhatsAppWeb(datosReserva);
+
+      alert("¡Turno reservado con éxito! El administrador será notificado.");
+      setNombre(''); 
+      setTelefono(''); 
+      setSelectedTime('');
       checkAvailability();
+      
     } catch (error) {
-      alert("Error al agendar.");
+      console.error('Error al agendar:', error);
+      alert("Error al agendar. Por favor intenta nuevamente.");
     } finally {
       setLoading(false);
     }
@@ -103,7 +191,6 @@ const BookingCalendar = () => {
               .react-calendar { border: none !important; font-family: inherit; width: 100% !important; max-width: 350px; background: transparent; }
               .react-calendar__tile--active { background: #1A1A1A !important; border-radius: 12px; color: #C5A059 !important; font-weight: bold; }
               .react-calendar__tile--now { background: #F3EFE6 !important; border-radius: 12px; color: #C5A059 !important; }
-              /* Estilo para días bloqueados/mantenimiento */
               .react-calendar__tile--disabled { 
                 background: #fee2e2 !important; 
                 color: #ef4444 !important; 
