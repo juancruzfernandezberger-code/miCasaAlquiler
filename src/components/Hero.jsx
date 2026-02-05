@@ -41,7 +41,7 @@ const Hero = () => {
       
       <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full py-20">
         {/* ALERTA DINÁMICA */}
-        {isAvailable && (
+        {isAvailable ? (
           <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-4 sm:mb-6 animate-bounce">
             <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -49,6 +49,15 @@ const Hero = () => {
             </span>
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-[0.2em] text-white">
               ¡Disponible para Alquiler Inmediato!
+            </span>
+          </div>
+        ) : (
+          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-red-400/30 mb-4 sm:mb-6">
+            <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
+              <span className="relative inline-flex rounded-full h-full w-full bg-red-500"></span>
+            </span>
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-[0.2em] text-white">
+              Alquilado / Reservado
             </span>
           </div>
         )}
